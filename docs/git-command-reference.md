@@ -1,6 +1,6 @@
 # Git command Reference
 
-Referẽncia rápida dos comandos estudados durante os fundamentos de Git e Terminal.
+Referência rápida dos comandos estudados durante os fundamentos de Git e Terminal.
 
 ## Terminal
 
@@ -20,7 +20,7 @@ Cria um arquivo.
 Abre um arquivo para edição no terminal.
 
 ### cat
-Mostra o conteudo de um arquivo.
+Mostra o conteúdo de um arquivo.
 
 ### mv
 Move ou renomeia arquivos e pastas.
@@ -34,7 +34,7 @@ Remove arquivos.
 Mostra o estado atual do repositório.
 
 ### git add
-Prepara altarações para o próximo commit.
+Prepara alterações para o próximo commit.
 
 ### git commit
 Registra alterações no histórico do Git.
@@ -49,7 +49,7 @@ Mostra ou gerencia branches.
 Junta alterações de branches.
 
 ### git push
-envia commits para o repositório remoto.
+Envia commits para o repositório remoto.
 
 ### git pull
 Baixa e integra alterações do repositório remoto.
