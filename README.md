@@ -6,3 +6,4 @@ Fundamentos
 
 - [Fundamentos de Git](docs/git-fundamentos.md)
 - [Referência de comandos](docs/git-command-reference.md)
+- [Programação](docs/programacao/README.md)
