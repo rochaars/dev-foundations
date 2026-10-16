@@ -1,23 +1,18 @@
-const contador = document.getElementById('contador');
-const botoesCarrinho = document.querySelectorAll('.add-carrinho');
+const contadorCarrinho = document.getElementById('contador');
+const botoesAdicionarCarrinho = document.querySelectorAll('.add-carrinho');
 const listaCarrinho = document.getElementById('lista-carrinho');
 
-console.log(contador);
-console.log(botoesCarrinho);
-console.log(listaCarrinho);
-
-// let quantidade = 0;
 
 const carrinho = [];
 
 
-botoesCarrinho.forEach(function (botao) {
+botoesAdicionarCarrinho.forEach(function (botao) {
 
     botao.addEventListener('click', function (event) {
 
         event.preventDefault();
 
-        // quantidade++;
+
 
 
 
@@ -31,31 +26,84 @@ botoesCarrinho.forEach(function (botao) {
 
         const preco = precoAtual.textContent;
 
+        const precoNumero = converterPreco(preco);
+
+
         const item = {
-            nome: nome,
-            preco: preco
+            nome,
+            preco,
+            quantidade: 1,
+            precoNumero,
+
         };
-        carrinho.push(item);
-        console.log(carrinho.length);
+
+
+
+        const itemExistente = carrinho.find(function (produtoNoCarrinho) {
+            return produtoNoCarrinho.nome === nome;
+
+        });
+        
+
+        if (itemExistente) {
+            itemExistente.quantidade++;
+        } else {
+            carrinho.push(item);
+        }
+    
         atualizarCarrinho();
 
-        contador.textContent = carrinho.length;
-
-
-
-
-
+        
     });
+
 
 });
 
+ function converterPreco(precoTexto) {
+         const precoConvertido = Number (
+                precoTexto
+                    .replace("R$" , "")
+                    .trim()
+                    .replace(',','.')
+            );
+         return precoConvertido;
+}
+
 function atualizarCarrinho() {
-    
+
+    listaCarrinho.innerHTML = '';
+
+    let totalCarrinho = 0;
+
     carrinho.forEach(function (item) {
+
+        const subtotalItem = item.precoNumero * item.quantidade;
+
+
+        totalCarrinho += subtotalItem;
+
         const produtoCarrinho = document.createElement('div');
-        produtoCarrinho.textContent = `Nome: ${item.nome} Valor: R$ ${item.preco}`;
-        console.log(item.nome);
-        console.log(item.preco);
-        console.log(produtoCarrinho);
+
+        produtoCarrinho.textContent = `${item.nome} | ${item.preco} | Quantidade: ${item.quantidade}`;
+
+        listaCarrinho.appendChild(produtoCarrinho);
+
     });
+
+    const quantidadeTotal = carrinho.reduce(function (acumulador, item) {
+        return acumulador + item.quantidade;
+
+    }, 0);
+
+    contadorCarrinho.textContent = quantidadeTotal;
+    
+
+    const totalElemento = document.createElement('p');
+
+    totalElemento.textContent = `Total: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}`;
+
+
+    listaCarrinho.appendChild(totalElemento);
+
+
 }
