@@ -28,6 +28,11 @@ section {
     max-width: 1200px;
 }
 
+#lista-carrinho{
+    color: white;
+    font-size: 1.6rem;
+}
+
 .icons {
     display: flex;
     align-items: center;
@@ -266,3 +271,21 @@ section {
     background-color: var(--main-color);
 }
 
+#lista-carrinho > div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    
+}
+
+#lista-carrinho button {
+    min-width: 3rem;
+    padding: 0.6rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    background-color: var(--main-color);
+    color:#fff
+}
