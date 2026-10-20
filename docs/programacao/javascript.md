@@ -8737,3 +8737,23 @@ Carrinho atualizado na tela</code></pre>
 
 </details>
 
+
+
+<details>
+<summary><strong>Armazenamento / localStorage</strong></summary>
+
+<details>
+<summary><strong>localStorage — guarda informações no navegador</strong></summary>
+
+O `localStorage` é um recurso do navegador que permite salvar informações mesmo depois que a página é atualizada ou fechada.
+
+No Projeto Cafeteria, usamos o `localStorage` para fazer o carrinho continuar salvo depois de apertar `F5`.
+
+Antes:
+
+```text
+Adiciona produtos
+↓
+Atualiza a página
+↓
+Carrinho fica vazio

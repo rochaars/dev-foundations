@@ -74,6 +74,22 @@ function atualizarCarrinho() {
 
     listaCarrinho.innerHTML = '';
 
+    salvarCarrinho();
+
+    if (carrinho.length === 0) {
+        const mensagemVazio = document.createElement('p');
+
+        mensagemVazio.textContent = 'Seu Carrinho está vazio';
+
+        listaCarrinho.appendChild(mensagemVazio);
+
+        contadorCarrinho.textContent = 0;
+
+        return;
+    }
+
+
+
 
     let totalCarrinho = 0;
 
@@ -93,28 +109,28 @@ function atualizarCarrinho() {
 
             if (item.quantidade > 1) {
                 item.quantidade--;
-            }else{
-                carrinho = carrinho.filter(function(produtoNoCarrinho){
+            } else {
+                carrinho = carrinho.filter(function (produtoNoCarrinho) {
                     return produtoNoCarrinho.nome !== item.nome;
                 });
             }
             atualizarCarrinho();
-            
+
 
         });
 
         const botaoAumentar = document.createElement('button');
         botaoAumentar.textContent = '+';
-        
+
         botaoAumentar.addEventListener('click', function () {
 
             item.quantidade++
             atualizarCarrinho();
-            
+
 
         });
 
-        produtoCarrinho.textContent = `${item.nome} | ${item.preco} | Quantidade: ${item.quantidade}`;
+        produtoCarrinho.textContent = `${item.nome} | ${item.preco} | Quantidade: ${item.quantidade} | Subtotal: R$ ${subtotalItem.toFixed(2).replace(".", ",")}`;
 
 
         const botaoRemover = document.createElement('button');
@@ -124,7 +140,7 @@ function atualizarCarrinho() {
         botaoRemover.textContent = `Remover`;
 
         botaoRemover.addEventListener('click', function () {
-            console.log(item);
+
 
             carrinho = carrinho.filter(function (produtoNoCarrinho) {
                 return produtoNoCarrinho.nome !== item.nome;
@@ -133,6 +149,7 @@ function atualizarCarrinho() {
 
             });
             atualizarCarrinho();
+            salvarCarrinho();
         });
 
 
@@ -149,6 +166,7 @@ function atualizarCarrinho() {
 
 
     });
+
 
     const quantidadeTotal = carrinho.reduce(function (acumulador, item) {
         return acumulador + item.quantidade;
@@ -167,3 +185,20 @@ function atualizarCarrinho() {
 
 
 }
+
+function salvarCarrinho() {
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+}
+
+function carregarCarrinho() {
+    const carrinhoSalvo = localStorage.getItem("carrinho");
+    if (carrinhoSalvo) {
+        carrinho = JSON.parse(carrinhoSalvo);
+    };
+}
+
+carregarCarrinho();
+atualizarCarrinho();
