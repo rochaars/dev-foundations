@@ -100,7 +100,33 @@ function atualizarCarrinho() {
 
         totalCarrinho += subtotalItem;
 
+        const infoCarrinho = document.createElement('div');
+
+        infoCarrinho.classList.add('info-carrinho');
+
+        const controlesCarrinho = document.createElement('div');
+
+        controlesCarrinho.classList.add('controles-carrinho');
+
+        const subtotalCarrinho = document.createElement('p');
+
+        subtotalCarrinho.textContent = `Subtotal: R$ ${subtotalItem.toFixed(2).replace(".", ",")}`;
+
+        const quantidadeCarrinho = document.createElement('p');
+
+        quantidadeCarrinho.textContent = `Quantidade: ${item.quantidade}`;
+
+        const nomeCarrinho = document.createElement('h3');
+
+        nomeCarrinho.textContent = item.nome;
+
+        const precoCarrinho = document.createElement('p');
+
+        precoCarrinho.textContent = item.preco;
+
         const produtoCarrinho = document.createElement('div');
+
+        produtoCarrinho.classList.add('produto-carrinho');
 
         const botaoDiminuir = document.createElement('button');
         botaoDiminuir.textContent = '-';
@@ -130,7 +156,6 @@ function atualizarCarrinho() {
 
         });
 
-        produtoCarrinho.textContent = `${item.nome} | ${item.preco} | Quantidade: ${item.quantidade} | Subtotal: R$ ${subtotalItem.toFixed(2).replace(".", ",")}`;
 
 
         const botaoRemover = document.createElement('button');
@@ -138,6 +163,8 @@ function atualizarCarrinho() {
 
 
         botaoRemover.textContent = `Remover`;
+
+        botaoRemover.classList.add('botao-remover');
 
         botaoRemover.addEventListener('click', function () {
 
@@ -153,14 +180,21 @@ function atualizarCarrinho() {
         });
 
 
+        infoCarrinho.appendChild(nomeCarrinho);
+        infoCarrinho.appendChild(precoCarrinho);
+        infoCarrinho.appendChild(quantidadeCarrinho);
+        infoCarrinho.appendChild(subtotalCarrinho);
 
-        produtoCarrinho.appendChild(botaoDiminuir);
+        controlesCarrinho.appendChild(botaoDiminuir);
+        controlesCarrinho.appendChild(botaoAumentar);
+        controlesCarrinho.appendChild(botaoRemover);
 
-        produtoCarrinho.appendChild(botaoAumentar);
-
-        produtoCarrinho.appendChild(botaoRemover);
+        produtoCarrinho.appendChild(infoCarrinho);
+        produtoCarrinho.appendChild(controlesCarrinho);
 
         listaCarrinho.appendChild(produtoCarrinho);
+
+
 
 
 
